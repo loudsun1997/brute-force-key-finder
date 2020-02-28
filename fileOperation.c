@@ -11,9 +11,10 @@ int main()
     {
         fprintf(stderr, "Could not open file\n");
     }
-    while(fgets(word, 16, fp))
+    for(int i = 0; i <10; i++)
     {
+        fgets(word, 16, fp);
         printf("word: %s", word);
+        break;
     }
-
 }
