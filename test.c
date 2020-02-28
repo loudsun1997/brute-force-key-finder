@@ -13,12 +13,12 @@ int main (void)
     /* A 256 bit key */
     unsigned char *key = (unsigned char *)"01234567890123456789012345678901";
 
-    /* A 128 bit IV */
-    unsigned char *iv = (unsigned char *)"0123456789012345";
+    /* A 128 bit IV in HexaDecimal*/
+    unsigned char *iv[16] = {0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff, 0x00, 0x99, 0x88, 0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11};
 
     /* Message to be encrypted */
     unsigned char *plaintext =
-        (unsigned char *)"The quick brown fox  over the lazy dog";
+        (unsigned char *)"This is lab1 in CS3840.";
 
     /*
      * Buffer for ciphertext. Ensure the buffer is long enough for the
