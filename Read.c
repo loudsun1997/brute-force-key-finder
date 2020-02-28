@@ -1,4 +1,12 @@
-    unsigned char* outputText;
+#include <openssl/conf.h>
+#include <openssl/evp.h>
+#include <openssl/err.h>
+#include <string.h>
+#include <stdio.h>
+
+int main (void)
+{    
+   unsigned char* outputText;
     FILE *stream;
     char *line = NULL;
     size_t len = 0;
@@ -20,3 +28,4 @@
           break;
        }
     }
+}
