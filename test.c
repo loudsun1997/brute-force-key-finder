@@ -23,11 +23,6 @@ int main (void)
         (unsigned char *)"This is lab1 in CS3840.";
 
     FILE *stream;
-
-    stream = fopen("output.txt", "w+");
-    fprintf(fp, "This is testing for fprintf...\n");
-    fputs("This is testing for fputs...\n", fp);
-    fclose(fp);
     stream = fopen("output.txt", "w+");
     /*
      * Buffer for ciphertext. Ensure the buffer is long enough for the
@@ -49,16 +44,9 @@ int main (void)
     printf("Ciphertext is:\n");
     BIO_dump_fp (stdout, (const char *)ciphertext, ciphertext_len);
     BIO_dump_fp (stream, (const char *)ciphertext, ciphertext_len);
-    char* buf_str = (char*) malloc(2*ciphertext_len+1);
-    char* buf_ptr = buf_str;
-    for(int i = 0; i < ciphertext_len  ; i++)
-    {
-       buf_ptr += sprintf(buf_ptr, "%02x", ciphertext[i]);
-    }
-    *(buf_ptr + 1) = '\0';
     for (int i=0; i<=127; i++)
     {
-       printf("i dont know is:%c\n", *buf_ptr);
+       printf("i dont know is:%c\n", ciphertext[i]);
     }
     
 
