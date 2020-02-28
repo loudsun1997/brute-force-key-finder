@@ -33,8 +33,6 @@ int main(void)
    while (fgets(word, 16, fp))
    {
       key = fgets(word, 16, fp);
-      if(memcmp(givenCipherText, cipherText, 128) == 0)
-         printf("word: %s", word);
    }
    
 }

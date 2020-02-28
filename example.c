@@ -25,20 +25,32 @@ int main (void)
      * algorithm and mode.
      */
     unsigned char ciphertext[128];
+  
+    unsigned char word[16];
+    FILE *fp;
+    fp = fopen("words.txt", "r");
+    if (fp == NULL)
+    {
+       fprintf(stderr, "Could not open file\n");
+    }
+    while (fgets(word, 16, fp))
+    {
+       /* Buffer for the decrypted text */
+       key = word;
 
-    /* Buffer for the decrypted text */
-    unsigned char decryptedtext[128];
+       unsigned char decryptedtext[128];
 
-    int decryptedtext_len, ciphertext_len;
+       int decryptedtext_len, ciphertext_len;
 
-    /* Encrypt the plaintext */
-    ciphertext_len = encrypt (plaintext, strlen ((char *)plaintext), key, iv,
-                              ciphertext);
+       /* Encrypt the plaintext */
+       ciphertext_len = encrypt(plaintext, strlen((char *)plaintext), key, iv,
+          ciphertext);
 
-    /* Do something useful with the ciphertext here */
-    printf("Ciphertext is:\n");
-    //BIO_dump_fp (stdout, (const char *)ciphertext, ciphertext_len);
+       /* Do something useful with the ciphertext here */
+       printf("Ciphertext is:\n");
+       //BIO_dump_fp (stdout, (const char *)ciphertext, ciphertext_len);
 
+<<<<<<< HEAD
     for(int i = 0; i < ciphertext_len; i++)
     {
         printf("%02x", ciphertext[i]);
@@ -46,14 +58,24 @@ int main (void)
     /* Decrypt the ciphertext */
     decryptedtext_len = decrypt(ciphertext, ciphertext_len, key, iv,
                                 decryptedtext);
+=======
+       for (int i = 0; i < ciphertext_len; i++)
+       {
+          printf("%c\n", ciphertext[i]);
+       }
+       /* Decrypt the ciphertext */
+       decryptedtext_len = decrypt(ciphertext, ciphertext_len, key, iv,
+          decryptedtext);
+>>>>>>> 68154504e1e5ac6a17923628c8a665310994dbcb
 
-    /* Add a NULL terminator. We are expecting printable text */
-    decryptedtext[decryptedtext_len] = '\0';
+       /* Add a NULL terminator. We are expecting printable text */
+       decryptedtext[decryptedtext_len] = '\0';
 
-    /* Show the decrypted text */
-    printf("Decrypted text is:\n");
-    printf("%s\n", decryptedtext);
+       /* Show the decrypted text */
+       printf("Decrypted text is:\n");
+       printf("%s\n", decryptedtext);
 
+    }
 
     return 0;
 }
