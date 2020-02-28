@@ -6,7 +6,7 @@ int main()
 {
     unsigned char word[16];
     FILE *fp;
-    fp = fopen("word.txt", "r");
+    fp = fopen("words.txt", "r");
     if(fp == NULL)
     {
         fprintf(stderr, "Could not open file\n");
