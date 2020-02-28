@@ -23,13 +23,15 @@ int main(void)
 
    unsigned char word[16];
    FILE *fp;
-   fp = fopen("word.txt", "r");
+   fp = fopen("words.txt", "r");
    if (fp == NULL)
    {
       fprintf(stderr, "Could not open file\n");
    }
    while (fgets(word, 16, fp))
    {
+      key = fgets(word, 16, fp);
+      if(strcmp(encrypt(plaintext, plaintext_len, key, iv, ciphertext), ciphertext) == 0)
       printf("word: %s", word);
    }
    
