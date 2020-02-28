@@ -18,7 +18,7 @@ int main (void)
 
     /* Message to be encrypted */
     unsigned char *plaintext =
-        (unsigned char *)"The quick brown fox  over the lazy dog";
+        (unsigned char *)"The quick brown fox jumps over the lazy dog";
 
     /*
      * Buffer for ciphertext. Ensure the buffer is long enough for the
