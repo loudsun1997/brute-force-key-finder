@@ -10,11 +10,12 @@ int main (void)
      * real application? :-)
      */
 
-    /* A 256 bit key */
-    unsigned char *key = (unsigned char *)"01234567890123456789012345678901";
-
-    /* A 128 bit IV in HexaDecimal*/
-    unsigned char *iv[16] = {0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff, 0x00, 0x99, 0x88, 0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11};
+    /* A 128 bit key */
+    /*unsigned char *key = (unsigned char *)"0123456789012345";*/
+    unsigned char *key = (unsigned char *)"absorb##########";
+    /* A 128 bit IV */
+    /*unsigned char *iv = (unsigned char *)"0123456789012345";*/
+    unsigned char iv[16] = {0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff, 0x00, 0x99, 0x88, 0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11};
 
     /* Message to be encrypted */
     unsigned char *plaintext =
@@ -39,6 +40,11 @@ int main (void)
     /* Do something useful with the ciphertext here */
     printf("Ciphertext is:\n");
     BIO_dump_fp (stdout, (const char *)ciphertext, ciphertext_len);
+    for (int i=0; i<=127; i++)
+    {
+       printf("i dont know is:%c\n", *ciphertext[i]);
+    }
+    
 
     /* Decrypt the ciphertext */
     decryptedtext_len = decrypt(ciphertext, ciphertext_len, key, iv,
@@ -126,7 +132,7 @@ int decrypt(unsigned char *ciphertext, int ciphertext_len, unsigned char *key,
      * IV size for *most* modes is the same as the block size. For AES this
      * is 128 bits
      */
-    if(1 != EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, key, iv))
+    if(1 != EVP_DecryptInit_ex(ctx, EVP_aes_128_cbc(), NULL, key, iv))
         handleErrors();
 
     /*
