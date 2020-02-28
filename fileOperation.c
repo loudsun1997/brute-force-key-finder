@@ -15,5 +15,6 @@ int main()
     {
         fgets(word, 16, fp);
         printf("word: %s", word);
+        break;
     }
 }
