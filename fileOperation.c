@@ -13,10 +13,7 @@ int main()
     }
     for(int i = 0; i <10; i++)
     {
-        while(fgets(word, 16, fp))
-        {
-
-            printf("word: %s", word);
-        }
+        fgets(word, 16, fp);
+        printf("word: %s", word);
     }
 }
