@@ -10,41 +10,29 @@ int main(void)
    unsigned char *key;
    /* A 128 bit IV */
    /*unsigned char *iv = (unsigned char *)"0123456789012345";*/
-   unsigned char iv[16] = { 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff, 0x00, 0x99, 0x88, 0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11 };
+   unsigned char iv[16] = {0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff, 0x00, 0x99, 0x88, 0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11};
 
    /* Message to be encrypted */
    unsigned char *plaintext =
       (unsigned char *)"This is lab1 in CS3840.";
 
-   unsigned char ciphertext[128];
-
+   unsigned char ciphertext[128] = {0x6b, 0x64, 0x2b, 0x4d, 0x23, 0x2d, 0x28, 0xfb, 0x92 0x72, 0xd3, 0xaa, 0xe0, 0x53, 
+      0xd6, 0x41, 0x0e, 0xf9, 0xdf, 0xb2, 0x67, 0xbb, 0xb9, 0xd9, 0xad 0xcf, 0xee, 0x0f, 0x2d, 0x82, 0x3f, 0x14};
+   
    unsigned char *outputText;
-   FILE *stream;
-   char *line = NULL;
-   size_t len = 0;
-   ssize_t read;
 
-   stream = fopen("words.txt", "r");
-   if (stream == NULL)
-      exit(EXIT_FAILURE);
-
-   while ((read = getline(&line, &len, stream)) != -1)
+   unsigned char word[16];
+   FILE *fp;
+   fp = fopen("word.txt", "r");
+   if (fp == NULL)
    {
-      key = (unsigned char*)read;
-      //printf("Retrieved line of length %u :\n", read);
-      //printf("%s", line);
-      encrypt(plaintext, sizeof(ciphertext), key, iv, ciphertext);
-
-      if (strcmp(outputText, plaintext) == 0)
-      {
-         printf("The Key used is: %s ", line);
-         break;
-      }
-      else
-      {
-         printf("this doesnt work\n");
-      }
+      fprintf(stderr, "Could not open file\n");
    }
+   while (fgets(word, 16, fp))
+   {
+      printf("word: %s", word);
+   }
+   
 }
 int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key,
    unsigned char *iv, unsigned char *ciphertext)
