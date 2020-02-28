@@ -14,6 +14,4 @@ int main()
     while(fgets(word, 16, fp)==1){
         printf("word: %s", word);
     }
-        
-    
 }
