@@ -3,34 +3,6 @@
 #include <openssl/err.h>
 #include <string.h>
 #include <stdio.h>
-<<<<<<< HEAD
-
-int main (void)
-{    
-   unsigned char* outputText;
-    FILE *stream;
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t read;
-
-    stream = fopen("words.txt", "r");
-    if (stream == NULL)
-       exit(EXIT_FAILURE);
-
-    while ((read = getline(&line, &len, stream)) != -1)
-    {
-       //printf("Retrieved line of length %u :\n", read);
-       //printf("%s", line);
-       decrypt(ciphertext, sizeof(ciphertext), read, iv, outputText);
-
-       if (strcmp(outputText, plaintext) == 0)
-       {
-          printf("The Key used is: %u ", line);
-          break;
-       }
-    }
-}
-=======
 int main(void)
 {
    /* A 128 bit key */
@@ -125,4 +97,3 @@ void handleErrors(void)
    abort();
 }
 
->>>>>>> 815ab3168d06334e7d71fb6bca56270d37ca6035
