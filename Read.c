@@ -16,8 +16,10 @@ int main(void)
    unsigned char *plaintext =
       (unsigned char *)"This is lab1 in CS3840.";
 
-   unsigned char ciphertext[128] = {0x6b, 0x64, 0x2b, 0x4d, 0x23, 0x2d, 0x28, 0xfb, 0x92 0x72, 0xd3, 0xaa, 0xe0, 0x53, 
+   unsigned char givenCipherText[128] = {0x6b, 0x64, 0x2b, 0x4d, 0x23, 0x2d, 0x28, 0xfb, 0x92 0x72, 0xd3, 0xaa, 0xe0, 0x53, 
       0xd6, 0x41, 0x0e, 0xf9, 0xdf, 0xb2, 0x67, 0xbb, 0xb9, 0xd9, 0xad 0xcf, 0xee, 0x0f, 0x2d, 0x82, 0x3f, 0x14};
+
+   unsigned char *cipherText[128];
    
    unsigned char *outputText;
 
@@ -31,13 +33,13 @@ int main(void)
    while (fgets(word, 16, fp))
    {
       key = fgets(word, 16, fp);
-      if(strcmp(encrypt(plaintext, plaintext_len, key, iv, ciphertext), ciphertext) == 0)
-      printf("word: %s", word);
+      if(memcmp(givenCipherText, cipherText, 128) == 0)
+         printf("word: %s", word);
    }
    
 }
 int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key,
-   unsigned char *iv, unsigned char *ciphertext)
+   unsigned char *iv, unsigned char *cipherText)
 {
    EVP_CIPHER_CTX *ctx;
 
@@ -78,7 +80,7 @@ int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key,
    /* Clean up */
    EVP_CIPHER_CTX_free(ctx);
 
-   return ciphertext_len;
+   return ciphertext;
 }
 
 void handleErrors(void)
