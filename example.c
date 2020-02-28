@@ -41,7 +41,7 @@ int main (void)
 
     for(int i = 0; i < ciphertext_len; i++)
     {
-        printf("%c\n", ciphertext[i]);
+        printf("%02x", ciphertext[i]);
     }
     /* Decrypt the ciphertext */
     decryptedtext_len = decrypt(ciphertext, ciphertext_len, key, iv,
