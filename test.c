@@ -19,8 +19,7 @@ int main (void)
     unsigned char iv[16] = {0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff, 0x00, 0x99, 0x88, 0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11};
 
     /* Message to be encrypted */
-    unsigned char *plaintext =
-        (unsigned char *)"This is lab1 in CS3840.";
+    unsigned char *plaintext = (unsigned char *)"This is lab1 in CS3840.";
 
     FILE *stream;
     stream = fopen("output.txt", "w+");
