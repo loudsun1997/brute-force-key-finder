@@ -11,13 +11,15 @@ int main (void)
      */
 
     /* A 256 bit key */
-    unsigned char *key = (unsigned char *)"absorb##########";
+    unsigned char *key;
     /* A 128 bit IV */
     /*unsigned char *iv = (unsigned char *)"0123456789012345";*/
     unsigned char iv[16] = {0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff, 0x00, 0x99, 0x88, 0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11};
 
     /* Message to be encrypted */
     unsigned char *plaintext = (unsigned char *)"This is lab1 in CS3840.";
+    unsigned char givenCipherText[128] = {0x6b, 0x64, 0x2b, 0x4d, 0x23, 0x2d, 0x28, 0xfb, 0x92 0x72, 0xd3, 0xaa, 0xe0, 0x53, 
+      0xd6, 0x41, 0x0e, 0xf9, 0xdf, 0xb2, 0x67, 0xbb, 0xb9, 0xd9, 0xad 0xcf, 0xee, 0x0f, 0x2d, 0x82, 0x3f, 0x14};
 
     /*
      * Buffer for ciphertext. Ensure the buffer is long enough for the
@@ -36,7 +38,7 @@ int main (void)
     while (fgets(word, 16, fp))
     {
        /* Buffer for the decrypted text */
-       key = word;
+       key = (unsigned char *)word;
 
        unsigned char decryptedtext[128];
 
@@ -50,30 +52,15 @@ int main (void)
        printf("Ciphertext is:\n");
        //BIO_dump_fp (stdout, (const char *)ciphertext, ciphertext_len);
 
-<<<<<<< HEAD
     for(int i = 0; i < ciphertext_len; i++)
     {
         printf("%02x", ciphertext[i]);
     }
-    /* Decrypt the ciphertext */
-    decryptedtext_len = decrypt(ciphertext, ciphertext_len, key, iv,
-                                decryptedtext);
-=======
-       for (int i = 0; i < ciphertext_len; i++)
-       {
-          printf("%c\n", ciphertext[i]);
-       }
-       /* Decrypt the ciphertext */
-       decryptedtext_len = decrypt(ciphertext, ciphertext_len, key, iv,
-          decryptedtext);
->>>>>>> 68154504e1e5ac6a17923628c8a665310994dbcb
 
-       /* Add a NULL terminator. We are expecting printable text */
-       decryptedtext[decryptedtext_len] = '\0';
-
-       /* Show the decrypted text */
-       printf("Decrypted text is:\n");
-       printf("%s\n", decryptedtext);
+    if(strncmp(givenCipherText, ciphertext, 64)==0)
+    {
+        printf("This is the key %s", key);
+    }
 
     }
 
