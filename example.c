@@ -2,6 +2,8 @@
 #include <openssl/evp.h>
 #include <openssl/err.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int main (void)
 {
@@ -52,7 +54,8 @@ int main (void)
     {
        /* Buffer for the decrypted text */
        
-       key = (unsigned char *)buffer;
+       //key = (unsigned char *)buffer;
+       key=(unsigned char *)"nature##########";
 
        unsigned char decryptedtext[128];
 
@@ -66,19 +69,33 @@ int main (void)
        
        //BIO_dump_fp (stdout, (const char *)ciphertext, ciphertext_len);
     //printf("This is the key %s", key);
-    printf("Ciphertext is:\n");
+    //printf("Ciphertext is:\n");
+
     for(int i = 0; i < ciphertext_len; i++)
     {
         printf("%02x", ciphertext[i]);
     }
+    break;
 
-    if(strncmp(givenCipherText, ciphertext, ciphertext_len-1)==0)
-    {
-        printf("This is the key %s", key);
+    // char* bbbuf_str = (char*) malloc(2*ciphertext_len+1);
+    // char* bbbuf_ptr = bbbuf_str;
+    // for(int i = 0; i < ciphertext_len; i++)
+    // {
+    //     bbbuf_ptr += sprintf(bbbuf_ptr, "%02x", ciphertext[i]);
+    //     printf("%02x", bbbuf_ptr);
+        
+    // }
+    // *(bbbuf_ptr + 1) = '\0';
+    // fprintf(stream, "%02x\n", bbbuf_str);
+    // if(strncmp(bbbuf_str, "6b642b4d232d28fb9272d3aae053d6410ef9dfb267bbb9d9adcfee0f2d823f14\0", ciphertext_len)==0)
+    // {
+    //     printf("This is the key %s", key);
+    // }
+
+    //BIO_dump_fp (stream, (const char *)ciphertext, ciphertext_len);
     }
 
-    BIO_dump_fp (stream, (const char *)ciphertext, ciphertext_len);
-    }
+
 
     return 0;
 }
