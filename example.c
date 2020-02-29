@@ -35,10 +35,24 @@ int main (void)
     {
        fprintf(stderr, "Could not open file\n");
     }
-    while (fgets(word, 16, fp))
+
+
+    char *buffer;
+    size_t read;
+    size_t bufsize  = 16;
+
+    buffer = (char *)malloc(bufsize * sizeof(char));
+    //while (fgets(word, 17, fp))
+
+
+    FILE *stream;
+    stream = fopen("output.txt", "w+");
+
+    while ((read = getline(&buffer, &bufsize, fp)) != -1) 
     {
        /* Buffer for the decrypted text */
-       key = (unsigned char *)word;
+       
+       key = (unsigned char *)buffer;
 
        unsigned char decryptedtext[128];
 
@@ -49,19 +63,21 @@ int main (void)
           ciphertext);
 
        /* Do something useful with the ciphertext here */
-       printf("Ciphertext is:\n");
+       
        //BIO_dump_fp (stdout, (const char *)ciphertext, ciphertext_len);
-
+    //printf("This is the key %s", key);
+    printf("Ciphertext is:\n");
     for(int i = 0; i < ciphertext_len; i++)
     {
         printf("%02x", ciphertext[i]);
     }
 
-    if(strncmp(givenCipherText, ciphertext, 64)==0)
+    if(strncmp(givenCipherText, ciphertext, ciphertext_len-1)==0)
     {
         printf("This is the key %s", key);
     }
 
+    BIO_dump_fp (stream, (const char *)ciphertext, ciphertext_len);
     }
 
     return 0;
