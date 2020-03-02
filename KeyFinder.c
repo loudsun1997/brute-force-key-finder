@@ -8,14 +8,12 @@
 int main (void)
 {
     /*
-     * Set up the key and iv. Do I need to say to not hard code these in a
-     * real application? :-)
+     * Set up the key and iv. 
      */
 
     /* A 256 bit key */
     unsigned char *key;
     /* A 128 bit IV */
-    /*unsigned char *iv = (unsigned char *)"0123456789012345";*/
     unsigned char iv[16] = {0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff, 0x00, 0x99, 0x88, 0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11};
 
     /* Message to be encrypted */
@@ -30,6 +28,9 @@ int main (void)
      */
     unsigned char ciphertext[128];
   
+    /*
+     * Getting the keys
+     */
     unsigned char word[16];
     FILE *fp;
     fp = fopen("words.txt", "r");
@@ -54,8 +55,8 @@ int main (void)
     {
        /* Buffer for the decrypted text */
        
-       //key = (unsigned char *)buffer;
-       key=(unsigned char *)"nature##########";
+       key = (unsigned char *)buffer;
+    //    key=(unsigned char *)"nature##########";
 
        unsigned char decryptedtext[128];
 
